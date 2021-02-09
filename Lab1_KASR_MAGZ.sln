@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab1_KASR_MAGZ", "Lab1_KASR_MAGZ.csproj", "{BFCA0EFC-ADFA-407D-8426-E30748269F75}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFCA0EFC-ADFA-407D-8426-E30748269F75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFCA0EFC-ADFA-407D-8426-E30748269F75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFCA0EFC-ADFA-407D-8426-E30748269F75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFCA0EFC-ADFA-407D-8426-E30748269F75}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F5085DB6-0B28-4A2C-BB0F-A0DBFF2A2A77}
+	EndGlobalSection
+EndGlobal
