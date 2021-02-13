@@ -50,7 +50,7 @@ namespace Lab1_KASR_MAGZ
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Players}/{action=Index}/{id?}");
             });
         }
     }

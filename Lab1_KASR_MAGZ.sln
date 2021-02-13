@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab1_KASR_MAGZ", "Lab1_KASR_MAGZ.csproj", "{BFCA0EFC-ADFA-407D-8426-E30748269F75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab1_KASR_MAGZ", "Lab1_KASR_MAGZ.csproj", "{BFCA0EFC-ADFA-407D-8426-E30748269F75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListLibrary", "..\ListLibrary\ListLibrary.csproj", "{6012C502-0C7E-4C07-9F4E-8456AAAC9269}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BFCA0EFC-ADFA-407D-8426-E30748269F75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFCA0EFC-ADFA-407D-8426-E30748269F75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFCA0EFC-ADFA-407D-8426-E30748269F75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6012C502-0C7E-4C07-9F4E-8456AAAC9269}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6012C502-0C7E-4C07-9F4E-8456AAAC9269}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6012C502-0C7E-4C07-9F4E-8456AAAC9269}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6012C502-0C7E-4C07-9F4E-8456AAAC9269}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

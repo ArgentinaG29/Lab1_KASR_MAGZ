@@ -26,6 +26,71 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\ListLibrary\\ListLibrary.csproj": {
+                "projectPath": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\ListLibrary\\ListLibrary.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\ListLibrary\\ListLibrary.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\ListLibrary\\ListLibrary.csproj",
+        "projectName": "ListLibrary",
+        "projectPath": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\ListLibrary\\ListLibrary.csproj",
+        "packagesPath": "C:\\Users\\Famga\\.nuget\\packages\\",
+        "outputPath": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\ListLibrary\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Famga\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
             "projectReferences": {}
           }
         },
@@ -48,9 +113,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
