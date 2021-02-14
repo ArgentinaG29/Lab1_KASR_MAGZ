@@ -11,6 +11,7 @@ namespace Lab1_KASR_MAGZ.Models.Data
         private readonly static Singleton _instance = new Singleton();
         public List<Players> PlayerList;
         public GenericList<Players> player_list;
+      
         private Singleton()
         {
             PlayerList = new List<Players>();

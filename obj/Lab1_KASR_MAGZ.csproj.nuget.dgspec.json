@@ -27,8 +27,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\ListLibrary\\ListLibrary.csproj": {
-                "projectPath": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\ListLibrary\\ListLibrary.csproj"
+              "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\Lab1_KASR_MAGZ\\ListLibrary\\ListLibrary.csproj": {
+                "projectPath": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\Lab1_KASR_MAGZ\\ListLibrary\\ListLibrary.csproj"
               }
             }
           }
@@ -69,14 +69,14 @@
         }
       }
     },
-    "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\ListLibrary\\ListLibrary.csproj": {
+    "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\Lab1_KASR_MAGZ\\ListLibrary\\ListLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\ListLibrary\\ListLibrary.csproj",
+        "projectUniqueName": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\Lab1_KASR_MAGZ\\ListLibrary\\ListLibrary.csproj",
         "projectName": "ListLibrary",
-        "projectPath": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\ListLibrary\\ListLibrary.csproj",
+        "projectPath": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\Lab1_KASR_MAGZ\\ListLibrary\\ListLibrary.csproj",
         "packagesPath": "C:\\Users\\Famga\\.nuget\\packages\\",
-        "outputPath": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\ListLibrary\\obj\\",
+        "outputPath": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\Lab1_KASR_MAGZ\\ListLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Famga\\AppData\\Roaming\\NuGet\\NuGet.Config",

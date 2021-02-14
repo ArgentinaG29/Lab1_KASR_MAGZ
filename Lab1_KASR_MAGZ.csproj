@@ -5,11 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ListLibrary\ListLibrary.csproj" />
+    <Compile Remove="ListLibrary\**" />
+    <Content Remove="ListLibrary\**" />
+    <EmbeddedResource Remove="ListLibrary\**" />
+    <None Remove="ListLibrary\**" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="ListLibrary\ListLibrary.csproj" />
   </ItemGroup>
 
 </Project>

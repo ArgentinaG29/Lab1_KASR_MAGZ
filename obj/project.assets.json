@@ -6074,8 +6074,8 @@
     },
     "ListLibrary/1.0.0": {
       "type": "project",
-      "path": "../ListLibrary/ListLibrary.csproj",
-      "msbuildProject": "../ListLibrary/ListLibrary.csproj"
+      "path": "ListLibrary/ListLibrary.csproj",
+      "msbuildProject": "ListLibrary/ListLibrary.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6110,8 +6110,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\ListLibrary\\ListLibrary.csproj": {
-              "projectPath": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\ListLibrary\\ListLibrary.csproj"
+            "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\Lab1_KASR_MAGZ\\ListLibrary\\ListLibrary.csproj": {
+              "projectPath": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\Lab1_KASR_MAGZ\\ListLibrary\\ListLibrary.csproj"
             }
           }
         }
