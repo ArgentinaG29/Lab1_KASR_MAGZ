@@ -9,8 +9,8 @@ namespace Lab1_KASR_MAGZ.Models.Data
     public class Singleton
     {
         private readonly static Singleton _instance = new Singleton();
-        public List<Players> PlayerList;
-        public GenericList<Players> player_list;
+        public List<Players> PlayerList;//Lista C#
+        public GenericList<Players> player_list;//Lista artesanal
       
         private Singleton()
         {

@@ -14,7 +14,7 @@ namespace Lab1_KASR_MAGZ.Controllers
         // GET: Players
         public ActionResult Index()
         {
-            return View(Singleton.Instance.PlayerList);
+            return View(Singleton.Instance.player_list);
         }
 
         // GET: Players/Details/5
