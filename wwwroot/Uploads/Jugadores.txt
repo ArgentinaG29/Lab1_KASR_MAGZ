@@ -1,0 +1,6 @@
+Ale, Sontay, Medio, 1200, red
+Maria, Argentina, Centro, 5000, Amarillo
+Sofia, Hernandez, Delantero, 600, FBC
+Abraham, Mateo, Portero, 500, CCC
+Sunoo, Kim, Centro, 678, FBC
+Jin, Kim, Medio, 890, red
