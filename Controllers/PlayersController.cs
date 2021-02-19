@@ -143,11 +143,11 @@ namespace Lab1_KASR_MAGZ.Controllers
                 ClassSearch.Looking(information, Singleton.Instance.player_list.Count(), Singleton.Instance.player_list, x => x.LastName == information);
                 ClassSearch.Looking(information, Singleton.Instance.player_list.Count(), Singleton.Instance.player_list, x => x.Club == information);
             }
-
-
-
             return View();
         }
+
+
+
 
         // POST: Players/Edit/5
         [HttpPost]
