@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Lab1_KASR_MAGZ.Models.Data;
+using Lab1_KASR_MAGZ.Models;
 using ListLibrary;
 
 namespace Lab1_KASR_MAGZ.Controllers
@@ -117,11 +118,35 @@ namespace Lab1_KASR_MAGZ.Controllers
             }
             else
             {
-                var EditPlayer = Singleton.Instance.player_list.ElementAt(id);
+                var EditPlayer = Singleton.Instance.player_list.ElementAt(id-1);
                 return View(EditPlayer);
             }
             
             
+        }
+
+        [HttpPost]
+        public ActionResult Searching(string information)
+        {
+
+            if(Singleton.Instance.PlayerList.Count != 0)
+            {
+                ClassSearch.Looking(information, Singleton.Instance.PlayerList.Count, Singleton.Instance.PlayerList, x => x.Name == information);
+                ClassSearch.Looking(information, Singleton.Instance.PlayerList.Count, Singleton.Instance.PlayerList, x => x.Position == information);
+                ClassSearch.Looking(information, Singleton.Instance.PlayerList.Count, Singleton.Instance.PlayerList, x => x.LastName == information);
+                ClassSearch.Looking(information, Singleton.Instance.PlayerList.Count, Singleton.Instance.PlayerList, x => x.Club == information);
+            }
+            else
+            {
+                ClassSearch.Looking(information, Singleton.Instance.player_list.Count(), Singleton.Instance.player_list, x => x.Name == information);
+                ClassSearch.Looking(information, Singleton.Instance.player_list.Count(), Singleton.Instance.player_list, x => x.Position == information);
+                ClassSearch.Looking(information, Singleton.Instance.player_list.Count(), Singleton.Instance.player_list, x => x.LastName == information);
+                ClassSearch.Looking(information, Singleton.Instance.player_list.Count(), Singleton.Instance.player_list, x => x.Club == information);
+            }
+
+
+
+            return View();
         }
 
         // POST: Players/Edit/5
@@ -144,10 +169,13 @@ namespace Lab1_KASR_MAGZ.Controllers
                 }
                 else
                 {
-                    EditId = Convert.ToInt32(Singleton.Instance.player_list.ElementAt(id).Id);
-                    EditName = Convert.ToString(Singleton.Instance.player_list.ElementAt(id).Name);
-                    EditLastName = Convert.ToString(Singleton.Instance.player_list.ElementAt(id).LastName);
-                    EditPosition = Convert.ToString(Singleton.Instance.player_list.ElementAt(id).Position);
+                    EditId = Convert.ToInt32(Singleton.Instance.player_list.ElementAt(id-1).Id);
+                    EditName = Convert.ToString(Singleton.Instance.player_list.ElementAt(id-1).Name);
+                    EditLastName = Convert.ToString(Singleton.Instance.player_list.ElementAt(id-1).LastName);
+                    EditPosition = Convert.ToString(Singleton.Instance.player_list.ElementAt(id-1).Position);
+                    int DEditLastName = Singleton.Instance.player_list.Last().Id;
+                    int DDEditLastName = Singleton.Instance.player_list.First().Id;
+
                     if (id == Singleton.Instance.player_list.First().Id)
                     {
                         Singleton.Instance.player_list.ExtractAtStart();
@@ -158,7 +186,7 @@ namespace Lab1_KASR_MAGZ.Controllers
                     }
                     else
                     {
-                        Singleton.Instance.player_list.ExtractAtPosition(id);
+                        Singleton.Instance.player_list.ExtractAtPosition(id - 1);
                     }
                 }
 
@@ -224,7 +252,7 @@ namespace Lab1_KASR_MAGZ.Controllers
 
         public ActionResult CraftList()
         {
-            if(Singleton.Instance.player_list.Count() == 0)
+            if(Singleton.Instance.player_list.Count() == 0 && Singleton.Instance.PlayerList.Count() == 0)
             {
                 var newPlayer = new Models.Players { };
                 Singleton.Instance.player_list.InsertAtEnd(newPlayer);
@@ -236,9 +264,11 @@ namespace Lab1_KASR_MAGZ.Controllers
             }
         }
 
+
+
         public ActionResult ListC()
         {
-            if(Singleton.Instance.PlayerList.Count() == 0)
+            if(Singleton.Instance.PlayerList.Count() == 0 && Singleton.Instance.player_list.Count() == 0)
             {
                 var newPlayer = new Models.Players { };
                 Singleton.Instance.PlayerList.Add(newPlayer);

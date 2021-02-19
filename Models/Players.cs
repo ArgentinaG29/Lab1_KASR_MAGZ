@@ -24,5 +24,6 @@ namespace Lab1_KASR_MAGZ.Models
         [Required]
         public string Club { get; set; }
 
+
     }
 }
