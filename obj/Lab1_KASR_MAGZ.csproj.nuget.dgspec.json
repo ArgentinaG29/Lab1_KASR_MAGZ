@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\Lab1_KASR_MAGZ\\Lab1_KASR_MAGZ.csproj": {}
+    "C:\\Users\\DELL\\Downloads\\Lab1_KASR_MAGZ\\Lab1_KASR_MAGZ.csproj": {}
   },
   "projects": {
-    "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\Lab1_KASR_MAGZ\\Lab1_KASR_MAGZ.csproj": {
+    "C:\\Users\\DELL\\Downloads\\Lab1_KASR_MAGZ\\Lab1_KASR_MAGZ.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\Lab1_KASR_MAGZ\\Lab1_KASR_MAGZ.csproj",
+        "projectUniqueName": "C:\\Users\\DELL\\Downloads\\Lab1_KASR_MAGZ\\Lab1_KASR_MAGZ.csproj",
         "projectName": "Lab1_KASR_MAGZ",
-        "projectPath": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\Lab1_KASR_MAGZ\\Lab1_KASR_MAGZ.csproj",
-        "packagesPath": "C:\\Users\\Famga\\.nuget\\packages\\",
-        "outputPath": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\Lab1_KASR_MAGZ\\obj\\",
+        "projectPath": "C:\\Users\\DELL\\Downloads\\Lab1_KASR_MAGZ\\Lab1_KASR_MAGZ.csproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DELL\\Downloads\\Lab1_KASR_MAGZ\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Famga\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,8 +27,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\Lab1_KASR_MAGZ\\ListLibrary\\ListLibrary.csproj": {
-                "projectPath": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\Lab1_KASR_MAGZ\\ListLibrary\\ListLibrary.csproj"
+              "C:\\Users\\DELL\\Downloads\\Lab1_KASR_MAGZ\\ListLibrary\\ListLibrary.csproj": {
+                "projectPath": "C:\\Users\\DELL\\Downloads\\Lab1_KASR_MAGZ\\ListLibrary\\ListLibrary.csproj"
               }
             }
           }
@@ -65,21 +65,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\Lab1_KASR_MAGZ\\ListLibrary\\ListLibrary.csproj": {
+    "C:\\Users\\DELL\\Downloads\\Lab1_KASR_MAGZ\\ListLibrary\\ListLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\Lab1_KASR_MAGZ\\ListLibrary\\ListLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\DELL\\Downloads\\Lab1_KASR_MAGZ\\ListLibrary\\ListLibrary.csproj",
         "projectName": "ListLibrary",
-        "projectPath": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\Lab1_KASR_MAGZ\\ListLibrary\\ListLibrary.csproj",
-        "packagesPath": "C:\\Users\\Famga\\.nuget\\packages\\",
-        "outputPath": "C:\\Argentina\\Universidad\\Tercer Ciclo\\Lab Estructura de Datos I\\Lab1_KASR_MAGZ\\ListLibrary\\obj\\",
+        "projectPath": "C:\\Users\\DELL\\Downloads\\Lab1_KASR_MAGZ\\ListLibrary\\ListLibrary.csproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DELL\\Downloads\\Lab1_KASR_MAGZ\\ListLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Famga\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -117,7 +117,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -104,6 +104,11 @@ namespace ListLibrary
             }            
         }
 
+        public override int GetCount
+        {
+            get => count;
+        }
+
         bool isEmpty()
         {
             bool empty = true;

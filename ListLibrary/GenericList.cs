@@ -10,6 +10,7 @@ namespace ListLibrary
         protected Node<T> start;
         protected Node<T> end;
         protected int count;
+        private int getCount;
 
         public GenericList()
         {
@@ -25,6 +26,8 @@ namespace ListLibrary
         public virtual void ExtractAtEnd() { }
 
         public virtual void ExtractAtPosition(int position) { }
+
+        public virtual int GetCount { get => getCount; set => getCount = value; }
 
         public IEnumerator<T> GetEnumerator()
         {

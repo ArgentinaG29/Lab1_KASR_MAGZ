@@ -14,7 +14,15 @@ namespace Lab1_KASR_MAGZ.Controllers
         // GET: Players
         public ActionResult Index()
         {
-            return View(Singleton.Instance.player_list);
+            if(Singleton.Instance.player_list.Count() != 0)
+            {
+                return View(Singleton.Instance.player_list);
+            }
+            else
+            {
+                return View(Singleton.Instance.PlayerList);
+            }
+            
         }
 
         // GET: Players/Details/5
@@ -36,14 +44,40 @@ namespace Lab1_KASR_MAGZ.Controllers
         {
             try
             {
-                int IdNumber;
-                if(Singleton.Instance.PlayerList.Count ==0)
+                bool TypeListArt = false;
+                bool TypeListC = false;
+                int IdNumber = 0;
+                int NumberListCraft = Singleton.Instance.player_list.GetCount;
+                int NumberListC = Singleton.Instance.PlayerList.Count;
+
+                if (NumberListCraft != 0)
                 {
-                    IdNumber = 0;
+                    TypeListArt = true;
+                    if (NumberListCraft == 1 && Singleton.Instance.player_list.First().Id == 0)
+                    {
+                        IdNumber = 1;
+                        Singleton.Instance.player_list.ExtractAtStart();
+                    }
+                    else
+                    {
+                        IdNumber = NumberListCraft + 1;
+                    }
+
                 }
-                else
+
+                if (NumberListC != 0)
                 {
-                    IdNumber = Singleton.Instance.PlayerList.Count;
+                    TypeListC = true;
+                    if (NumberListC == 1 && Singleton.Instance.PlayerList.First().Id == 0)
+                    {
+                        IdNumber = 1;
+                        var DeletePlayerCreate = Singleton.Instance.PlayerList.Find(x => x.Id == 0);
+                        Singleton.Instance.PlayerList.Remove(DeletePlayerCreate);
+                    }
+                    else
+                    {
+                        IdNumber = Singleton.Instance.PlayerList.Count + 1;
+                    }
                 }
 
                 var newPlayer = new Models.Players
@@ -55,8 +89,16 @@ namespace Lab1_KASR_MAGZ.Controllers
                     Salary = Convert.ToInt32(collection["Salary"]),
                     Club = collection["Club"]
                 };
-                Singleton.Instance.PlayerList.Add(newPlayer);                
-                Singleton.Instance.player_list.InsertAtEnd(newPlayer);
+
+                if (TypeListArt == true)
+                {
+                    Singleton.Instance.player_list.InsertAtEnd(newPlayer);
+                }
+                else
+                {
+                    Singleton.Instance.PlayerList.Add(newPlayer);
+                }
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -68,7 +110,18 @@ namespace Lab1_KASR_MAGZ.Controllers
         // GET: Players/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            if (Singleton.Instance.PlayerList.Count != 0)
+            {
+                var EditPlayer = Singleton.Instance.PlayerList.Find(x => x.Id == id);
+                return View(EditPlayer);
+            }
+            else
+            {
+                var EditPlayer = Singleton.Instance.player_list.ElementAt(id);
+                return View(EditPlayer);
+            }
+            
+            
         }
 
         // POST: Players/Edit/5
@@ -78,6 +131,56 @@ namespace Lab1_KASR_MAGZ.Controllers
         {
             try
             {
+                int EditId;
+                string EditName, EditLastName, EditPosition;
+                if (Singleton.Instance.PlayerList.Count != 0)
+                {
+                    EditId = Convert.ToInt32(Singleton.Instance.PlayerList.Find(x => x.Id == id).Id);
+                    EditName = Convert.ToString(Singleton.Instance.PlayerList.Find(x => x.Id == id).Name);
+                    EditLastName = Convert.ToString(Singleton.Instance.PlayerList.Find(x => x.Id == id).LastName);
+                    EditPosition = Convert.ToString(Singleton.Instance.PlayerList.Find(x => x.Id == id).Position);
+                    var DeletePlayerEdit = Singleton.Instance.PlayerList.Find(x => x.Id == id);
+                    Singleton.Instance.PlayerList.Remove(DeletePlayerEdit);
+                }
+                else
+                {
+                    EditId = Convert.ToInt32(Singleton.Instance.player_list.ElementAt(id).Id);
+                    EditName = Convert.ToString(Singleton.Instance.player_list.ElementAt(id).Name);
+                    EditLastName = Convert.ToString(Singleton.Instance.player_list.ElementAt(id).LastName);
+                    EditPosition = Convert.ToString(Singleton.Instance.player_list.ElementAt(id).Position);
+                    if (id == Singleton.Instance.player_list.First().Id)
+                    {
+                        Singleton.Instance.player_list.ExtractAtStart();
+                    }
+                    else if (id == Singleton.Instance.player_list.Last().Id)
+                    {
+                        Singleton.Instance.player_list.ExtractAtEnd();
+                    }
+                    else
+                    {
+                        Singleton.Instance.player_list.ExtractAtPosition(id);
+                    }
+                }
+
+                var EditPlayer = new Models.Players
+                {
+                    Id = EditId,
+                    Name = EditName,
+                    LastName = EditLastName,
+                    Position = EditPosition,
+                    Salary = Convert.ToSingle(collection["Salary"]),
+                    Club = collection["Club"]
+                };
+
+                if(Singleton.Instance.PlayerList.Count != 0)
+                {
+                    Singleton.Instance.PlayerList.Insert(id, EditPlayer);
+                }
+                else
+                {
+                    Singleton.Instance.player_list.InsertAtEnd(EditPlayer);
+                }
+                
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -89,8 +192,16 @@ namespace Lab1_KASR_MAGZ.Controllers
         // GET: Players/Delete/5
         public ActionResult Delete(int id)
         {
-            var DeletedPlayer = Singleton.Instance.PlayerList.Find(x => x.Id == id);
-            return View(DeletedPlayer);
+            if (Singleton.Instance.PlayerList.Count != 0)
+            {
+                var DeletedPlayer = Singleton.Instance.PlayerList.Find(x => x.Id == id);
+                return View(DeletedPlayer);
+            }
+            else
+            {
+                var DeletedPlayer = Singleton.Instance.player_list.ElementAt(id);
+                return View(DeletedPlayer);
+            }
         }
 
         // POST: Players/Delete/5
@@ -109,6 +220,35 @@ namespace Lab1_KASR_MAGZ.Controllers
             {
                 return View();
             }
-        }        
+        }
+
+        public ActionResult CraftList()
+        {
+            if(Singleton.Instance.player_list.Count() == 0)
+            {
+                var newPlayer = new Models.Players { };
+                Singleton.Instance.player_list.InsertAtEnd(newPlayer);
+                return RedirectToAction(nameof(Create));
+            }
+            else
+            {
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        public ActionResult ListC()
+        {
+            if(Singleton.Instance.PlayerList.Count() == 0)
+            {
+                var newPlayer = new Models.Players { };
+                Singleton.Instance.PlayerList.Add(newPlayer);
+                return RedirectToAction(nameof(Create));
+            }
+            else
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            
+        }
     }
 }
