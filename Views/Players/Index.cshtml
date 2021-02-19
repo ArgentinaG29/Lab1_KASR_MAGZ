@@ -17,8 +17,18 @@
 <p>
 
 </p>
+<p>
+</p>
+<h1>How do you want upload the data?</h1>
+<p>IMPORT FILE</p>
+<form asp-controller="Players" asp-action="Index" method="post" enctype="multipart/form-data">
+    <input type="file" name="postedFile" value="" />
+    <input type="submit" value="Import" />
+</form>
+<p>
 
-
+</p>
+<p>MANUAL</p>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -82,3 +92,5 @@
     <input type="type" name="information" value="" />
     <button>Enviar</button>
 </form>
+
+

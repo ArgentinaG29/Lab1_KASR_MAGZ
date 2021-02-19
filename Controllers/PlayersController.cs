@@ -7,11 +7,22 @@ using Microsoft.AspNetCore.Mvc;
 using Lab1_KASR_MAGZ.Models.Data;
 using Lab1_KASR_MAGZ.Models;
 using ListLibrary;
+using System.IO;
+using System.Data;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Lab1_KASR_MAGZ.Controllers
 {
     public class PlayersController : Controller
     {        
+
+        private IHostingEnvironment Environment;
+
+        public PlayersController(IHostingEnvironment _environment)
+        {
+            Environment = _environment;
+        }
+
         // GET: Players
         public ActionResult Index()
         {
@@ -24,6 +35,103 @@ namespace Lab1_KASR_MAGZ.Controllers
                 return View(Singleton.Instance.PlayerList);
             }
             
+        }
+
+        [HttpPost]
+        public IActionResult Index(IFormFile postedFile)
+        {
+            bool TypeListArt = false;
+            bool TypeListC = false;
+            int IdNumber = 0;
+            int NumberListCraft = Singleton.Instance.player_list.GetCount;
+            int NumberListC = Singleton.Instance.PlayerList.Count;
+
+            if (NumberListCraft != 0)
+            {
+                TypeListArt = true;
+                if (NumberListCraft == 1 && Singleton.Instance.player_list.First().Id == 0)
+                {
+                    IdNumber = 0;
+                    Singleton.Instance.player_list.ExtractAtStart();
+                }
+                else
+                {
+                    IdNumber = NumberListCraft + 1;
+                }
+
+            }
+
+            if (NumberListC != 0)
+            {
+                TypeListC = true;
+                if (NumberListC == 1 && Singleton.Instance.PlayerList.First().Id == 0)
+                {
+                    IdNumber = 0;
+                    var DeletePlayerCreate = Singleton.Instance.PlayerList.Find(x => x.Id == 0);
+                    Singleton.Instance.PlayerList.Remove(DeletePlayerCreate);
+                }
+                else
+                {
+                    IdNumber = Singleton.Instance.PlayerList.Count + 1;
+                }
+            }
+
+            if (postedFile != null)
+            {
+                string path = Path.Combine(this.Environment.WebRootPath, "Uploads");
+                if(!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                string fileName = Path.GetFileName(postedFile.FileName);
+                string filePath = Path.Combine(path, fileName);
+                
+                using (FileStream stream = new FileStream(filePath, FileMode.Create))
+                {
+                    postedFile.CopyTo(stream);
+                }
+                string csvData = System.IO.File.ReadAllText(filePath);
+
+                StreamReader streamReader = new StreamReader(filePath);
+                string lineaActual;
+
+                while(!streamReader.EndOfStream)
+                {
+                    lineaActual = streamReader.ReadLine();
+
+                    IdNumber += 1;
+                    string[] FileInformationList = lineaActual.Split(',');
+                    string FileName = FileInformationList[0];
+                    string FileLastName = FileInformationList[1];
+                    string FilePosition = FileInformationList[2];
+                    int FileSalary = Convert.ToInt32(FileInformationList[3]);
+                    string FileClub = FileInformationList[4];
+
+                    var FilePlayer = new Models.Players
+                    {
+                        Id = IdNumber,
+                        Name = FileName,
+                        LastName = FileLastName,
+                        Position = FilePosition,
+                        Salary = FileSalary,
+                        Club = FileClub
+                    };
+
+                    if (TypeListArt == true)
+                    {
+                        Singleton.Instance.player_list.InsertAtEnd(FilePlayer);
+                    }
+                    else
+                    {
+                        Singleton.Instance.PlayerList.Add(FilePlayer);
+                    }
+                }
+
+                return RedirectToAction(nameof(Index));
+
+            }
+            return View();
         }
 
         // GET: Players/Details/5
@@ -124,6 +232,7 @@ namespace Lab1_KASR_MAGZ.Controllers
             
             
         }
+
 
         [HttpPost]
         public ActionResult Searching(string information)
@@ -257,7 +366,7 @@ namespace Lab1_KASR_MAGZ.Controllers
             {
                 var newPlayer = new Models.Players { };
                 Singleton.Instance.player_list.InsertAtEnd(newPlayer);
-                return RedirectToAction(nameof(Create));
+                return RedirectToAction(nameof(Index));
             }
             else
             {
@@ -273,7 +382,7 @@ namespace Lab1_KASR_MAGZ.Controllers
             {
                 var newPlayer = new Models.Players { };
                 Singleton.Instance.PlayerList.Add(newPlayer);
-                return RedirectToAction(nameof(Create));
+                return RedirectToAction(nameof(Index));
             }
             else
             {
