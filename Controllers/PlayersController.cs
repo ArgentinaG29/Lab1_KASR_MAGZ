@@ -117,7 +117,7 @@ namespace Lab1_KASR_MAGZ.Controllers
             }
             else
             {
-                var EditPlayer = Singleton.Instance.player_list.ElementAt(id);
+                var EditPlayer = Singleton.Instance.player_list.ElementAt(id-1);
                 return View(EditPlayer);
             }
             
@@ -144,22 +144,11 @@ namespace Lab1_KASR_MAGZ.Controllers
                 }
                 else
                 {
-                    EditId = Convert.ToInt32(Singleton.Instance.player_list.ElementAt(id).Id);
-                    EditName = Convert.ToString(Singleton.Instance.player_list.ElementAt(id).Name);
-                    EditLastName = Convert.ToString(Singleton.Instance.player_list.ElementAt(id).LastName);
-                    EditPosition = Convert.ToString(Singleton.Instance.player_list.ElementAt(id).Position);
-                    if (id == Singleton.Instance.player_list.First().Id)
-                    {
-                        Singleton.Instance.player_list.ExtractAtStart();
-                    }
-                    else if (id == Singleton.Instance.player_list.Last().Id)
-                    {
-                        Singleton.Instance.player_list.ExtractAtEnd();
-                    }
-                    else
-                    {
-                        Singleton.Instance.player_list.ExtractAtPosition(id);
-                    }
+                    EditId = Convert.ToInt32(Singleton.Instance.player_list.ElementAt(id-1).Id);
+                    EditName = Convert.ToString(Singleton.Instance.player_list.ElementAt(id-1).Name);
+                    EditLastName = Convert.ToString(Singleton.Instance.player_list.ElementAt(id-1).LastName);
+                    EditPosition = Convert.ToString(Singleton.Instance.player_list.ElementAt(id-1).Position);
+                    Singleton.Instance.player_list.ExtractAtPosition(id - 1);
                 }
 
                 var EditPlayer = new Models.Players
@@ -178,7 +167,7 @@ namespace Lab1_KASR_MAGZ.Controllers
                 }
                 else
                 {
-                    Singleton.Instance.player_list.InsertAtEnd(EditPlayer);
+                    Singleton.Instance.player_list.InsertAtPosition(EditPlayer, id-1);
                 }
                 
                 return RedirectToAction(nameof(Index));
@@ -199,7 +188,7 @@ namespace Lab1_KASR_MAGZ.Controllers
             }
             else
             {
-                var DeletedPlayer = Singleton.Instance.player_list.ElementAt(id);
+                var DeletedPlayer = Singleton.Instance.player_list.ElementAt(id-1);
                 return View(DeletedPlayer);
             }
         }
@@ -213,7 +202,7 @@ namespace Lab1_KASR_MAGZ.Controllers
             {
                 var DeletedPlayer = Singleton.Instance.PlayerList.Find(x => x.Id == id);
                 Singleton.Instance.PlayerList.Remove(DeletedPlayer);
-                Singleton.Instance.player_list.ExtractAtPosition(id);
+                Singleton.Instance.player_list.ExtractAtPosition(id-1);
                 return RedirectToAction(nameof(Index));
             }
             catch
