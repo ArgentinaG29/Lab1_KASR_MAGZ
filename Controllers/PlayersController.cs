@@ -158,6 +158,7 @@ namespace Lab1_KASR_MAGZ.Controllers
             {
                 int EditId;
                 string EditName, EditLastName, EditPosition;
+                string probando="";
                 if (Singleton.Instance.PlayerList.Count != 0)
                 {
                     EditId = Convert.ToInt32(Singleton.Instance.PlayerList.Find(x => x.Id == id).Id);
