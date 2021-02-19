@@ -10,6 +10,7 @@ using ListLibrary;
 using System.IO;
 using System.Data;
 using Microsoft.AspNetCore.Hosting;
+using System.Diagnostics;
 
 namespace Lab1_KASR_MAGZ.Controllers
 {
@@ -17,6 +18,8 @@ namespace Lab1_KASR_MAGZ.Controllers
     {        
 
         private IHostingEnvironment Environment;
+        Stopwatch timer = new Stopwatch();
+        
 
         public PlayersController(IHostingEnvironment _environment)
         {
@@ -40,11 +43,12 @@ namespace Lab1_KASR_MAGZ.Controllers
         [HttpPost]
         public IActionResult Index(IFormFile postedFile)
         {
+            timer.Start();
             bool TypeListArt = false;
-            bool TypeListC = false;
             int IdNumber = 0;
             int NumberListCraft = Singleton.Instance.player_list.GetCount;
             int NumberListC = Singleton.Instance.PlayerList.Count;
+            string ListType = "";
 
             if (NumberListCraft != 0)
             {
@@ -52,6 +56,7 @@ namespace Lab1_KASR_MAGZ.Controllers
                 if (NumberListCraft == 1 && Singleton.Instance.player_list.First().Id == 0)
                 {
                     IdNumber = 0;
+                    ListType = "Lista Artesanal. ";
                     Singleton.Instance.player_list.ExtractAtStart();
                 }
                 else
@@ -63,10 +68,10 @@ namespace Lab1_KASR_MAGZ.Controllers
 
             if (NumberListC != 0)
             {
-                TypeListC = true;
                 if (NumberListC == 1 && Singleton.Instance.PlayerList.First().Id == 0)
                 {
                     IdNumber = 0;
+                    ListType = "Lista C#. ";
                     var DeletePlayerCreate = Singleton.Instance.PlayerList.Find(x => x.Id == 0);
                     Singleton.Instance.PlayerList.Remove(DeletePlayerCreate);
                 }
@@ -128,6 +133,15 @@ namespace Lab1_KASR_MAGZ.Controllers
                     }
                 }
 
+                //MIDIENDO TIEMPO Y GUARDARLO
+                timer.Stop();
+                var NewDescriptionTime = new Models.TimeDescription
+                {
+                    DescriptionTime = ListType + "Carga de datos por archivo ",
+                    NumberTime = Convert.ToString(timer.Elapsed.TotalMilliseconds)
+                };
+                Singleton.Instance.OperationTime.Add(NewDescriptionTime);
+
                 return RedirectToAction(nameof(Index));
 
             }
@@ -153,8 +167,9 @@ namespace Lab1_KASR_MAGZ.Controllers
         {
             try
             {
+                timer.Start();
                 bool TypeListArt = false;
-                bool TypeListC = false;
+                string ListType = "";
                 int IdNumber = 0;
                 int NumberListCraft = Singleton.Instance.player_list.GetCount;
                 int NumberListC = Singleton.Instance.PlayerList.Count;
@@ -165,6 +180,7 @@ namespace Lab1_KASR_MAGZ.Controllers
                     if (NumberListCraft == 1 && Singleton.Instance.player_list.First().Id == 0)
                     {
                         IdNumber = 1;
+                        ListType = "Lista Artesanal. ";
                         Singleton.Instance.player_list.ExtractAtStart();
                     }
                     else
@@ -176,10 +192,10 @@ namespace Lab1_KASR_MAGZ.Controllers
 
                 if (NumberListC != 0)
                 {
-                    TypeListC = true;
                     if (NumberListC == 1 && Singleton.Instance.PlayerList.First().Id == 0)
                     {
                         IdNumber = 1;
+                        ListType = "Lista C#. ";
                         var DeletePlayerCreate = Singleton.Instance.PlayerList.Find(x => x.Id == 0);
                         Singleton.Instance.PlayerList.Remove(DeletePlayerCreate);
                     }
@@ -208,6 +224,15 @@ namespace Lab1_KASR_MAGZ.Controllers
                     Singleton.Instance.PlayerList.Add(newPlayer);
                 }
 
+                //MEDIR TIEMPO Y GUARDARLO
+                timer.Stop();
+                var NewDescriptionTime = new Models.TimeDescription
+                {
+                    DescriptionTime = ListType +  "Carga de datos de forma manual ",
+                    NumberTime = Convert.ToString(timer.Elapsed.TotalMilliseconds)
+                };
+                Singleton.Instance.OperationTime.Add(NewDescriptionTime);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -226,37 +251,23 @@ namespace Lab1_KASR_MAGZ.Controllers
             }
             else
             {
-                var EditPlayer = Singleton.Instance.player_list.ElementAt(id-1);
+                int pos = 0;
+                bool Finding = false;
+                while (Finding == false)
+                {
+                    if (Convert.ToInt32(Singleton.Instance.player_list.ElementAt(pos).Id) == id)
+                    {
+                        Finding = true;
+                    }
+                    else
+                    {
+                        pos++;
+                    }
+                }
+                var EditPlayer = Singleton.Instance.player_list.ElementAt(pos);
                 return View(EditPlayer);
             }
-            
-            
         }
-
-
-        [HttpPost]
-        public ActionResult Searching(string information)
-        {
-
-            if(Singleton.Instance.PlayerList.Count != 0)
-            {
-                ClassSearch.Looking(information, Singleton.Instance.PlayerList.Count, Singleton.Instance.PlayerList, x => x.Name == information);
-                ClassSearch.Looking(information, Singleton.Instance.PlayerList.Count, Singleton.Instance.PlayerList, x => x.Position == information);
-                ClassSearch.Looking(information, Singleton.Instance.PlayerList.Count, Singleton.Instance.PlayerList, x => x.LastName == information);
-                ClassSearch.Looking(information, Singleton.Instance.PlayerList.Count, Singleton.Instance.PlayerList, x => x.Club == information);
-            }
-            else
-            {
-                ClassSearch.Looking(information, Singleton.Instance.player_list.Count(), Singleton.Instance.player_list, x => x.Name == information);
-                ClassSearch.Looking(information, Singleton.Instance.player_list.Count(), Singleton.Instance.player_list, x => x.Position == information);
-                ClassSearch.Looking(information, Singleton.Instance.player_list.Count(), Singleton.Instance.player_list, x => x.LastName == information);
-                ClassSearch.Looking(information, Singleton.Instance.player_list.Count(), Singleton.Instance.player_list, x => x.Club == information);
-            }
-            return View();
-        }
-
-
-
 
         // POST: Players/Edit/5
         [HttpPost]
@@ -265,9 +276,11 @@ namespace Lab1_KASR_MAGZ.Controllers
         {
             try
             {
+                timer.Start();
                 int EditId;
+                int pos = 0;
+                string TypeList = "";
                 string EditName, EditLastName, EditPosition;
-                string probando="";
                 if (Singleton.Instance.PlayerList.Count != 0)
                 {
                     EditId = Convert.ToInt32(Singleton.Instance.PlayerList.Find(x => x.Id == id).Id);
@@ -276,15 +289,28 @@ namespace Lab1_KASR_MAGZ.Controllers
                     EditPosition = Convert.ToString(Singleton.Instance.PlayerList.Find(x => x.Id == id).Position);
                     var DeletePlayerEdit = Singleton.Instance.PlayerList.Find(x => x.Id == id);
                     Singleton.Instance.PlayerList.Remove(DeletePlayerEdit);
+                    TypeList = "Lista C#. ";
                 }
                 else
                 {
-                    EditId = Convert.ToInt32(Singleton.Instance.player_list.ElementAt(id-1).Id);
-                    EditName = Convert.ToString(Singleton.Instance.player_list.ElementAt(id-1).Name);
-                    EditLastName = Convert.ToString(Singleton.Instance.player_list.ElementAt(id-1).LastName);
-                    EditPosition = Convert.ToString(Singleton.Instance.player_list.ElementAt(id-1).Position);
-                    int DEditLastName = Singleton.Instance.player_list.Last().Id;
-                    int DDEditLastName = Singleton.Instance.player_list.First().Id;
+                    TypeList = "Lista Artesanal. ";
+                    bool Finding = false;
+                    while (Finding == false)
+                    {
+                        if (Convert.ToInt32(Singleton.Instance.player_list.ElementAt(pos).Id) == id)
+                        {
+                            Finding = true;
+                        }
+                        else
+                        {
+                            pos++;
+                        }
+                    }
+
+                    EditId = Convert.ToInt32(Singleton.Instance.player_list.ElementAt(pos).Id);
+                    EditName = Convert.ToString(Singleton.Instance.player_list.ElementAt(pos).Name);
+                    EditLastName = Convert.ToString(Singleton.Instance.player_list.ElementAt(pos).LastName);
+                    EditPosition = Convert.ToString(Singleton.Instance.player_list.ElementAt(pos).Position);
 
                     if (id == Singleton.Instance.player_list.First().Id)
                     {
@@ -296,8 +322,9 @@ namespace Lab1_KASR_MAGZ.Controllers
                     }
                     else
                     {
-                        Singleton.Instance.player_list.ExtractAtPosition(id - 1);
+                        Singleton.Instance.player_list.ExtractAtPosition(pos);
                     }
+
                 }
 
                 var EditPlayer = new Models.Players
@@ -312,13 +339,23 @@ namespace Lab1_KASR_MAGZ.Controllers
 
                 if(Singleton.Instance.PlayerList.Count != 0)
                 {
-                    Singleton.Instance.PlayerList.Insert(id, EditPlayer);
+                    Singleton.Instance.PlayerList.Insert(id - 1, EditPlayer);
                 }
                 else
                 {
-                    Singleton.Instance.player_list.InsertAtPosition(EditPlayer, id-1);
+                    Singleton.Instance.player_list.InsertAtPosition(EditPlayer, pos);
                 }
-                
+
+
+                //MEDIR TIEMPO Y GUARDARLO
+                timer.Stop();
+                var NewDescriptionTime = new Models.TimeDescription
+                {
+                    DescriptionTime = TypeList + "Editar jugador ",
+                    NumberTime = Convert.ToString(timer.Elapsed.TotalMilliseconds)
+                };
+                Singleton.Instance.OperationTime.Add(NewDescriptionTime);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -337,7 +374,20 @@ namespace Lab1_KASR_MAGZ.Controllers
             }
             else
             {
-                var DeletedPlayer = Singleton.Instance.player_list.ElementAt(id);
+                int pos = 0;
+                bool Finding = false;
+                while(Finding==false)
+                {
+                    if (Convert.ToInt32(Singleton.Instance.player_list.ElementAt(pos).Id) == id)
+                    {
+                        Finding = true;
+                    }
+                    else
+                    {
+                        pos++;
+                    }
+                }
+                var DeletedPlayer = Singleton.Instance.player_list.ElementAt(pos);
                 return View(DeletedPlayer);
             }
         }
@@ -349,15 +399,82 @@ namespace Lab1_KASR_MAGZ.Controllers
         {
             try
             {
-                var DeletedPlayer = Singleton.Instance.PlayerList.Find(x => x.Id == id);
-                Singleton.Instance.PlayerList.Remove(DeletedPlayer);
-                Singleton.Instance.player_list.ExtractAtPosition(id);
+                timer.Start();
+                string TypeList = "";
+                if (Singleton.Instance.PlayerList.Count != 0)
+                {
+                    var DeletedPlayer = Singleton.Instance.PlayerList.Find(x => x.Id == id);
+                    Singleton.Instance.PlayerList.Remove(DeletedPlayer);
+                    TypeList = "Lista C#. ";
+                }
+                else
+                {
+                    int pos = 0;
+                    bool Finding = false;
+                    TypeList = "Lista Artesanal. ";
+                    while (Finding == false)
+                    {
+                        if (Convert.ToInt32(Singleton.Instance.player_list.ElementAt(pos).Id) == id)
+                        {
+                            Finding = true;
+                        }
+                        else
+                        {
+                            pos++;
+                        }
+                    }
+                    var DeletedPlayer = Singleton.Instance.player_list.ElementAt(pos);
+                    Singleton.Instance.player_list.ExtractAtPosition(pos);
+                }
+
+
+                //MEDIR TIEMPO Y GUARDARLO
+                timer.Stop();
+                var NewDescriptionTime = new Models.TimeDescription
+                {
+                    DescriptionTime = TypeList + "Eliminar jugador ",
+                    NumberTime = Convert.ToString(timer.Elapsed.TotalMilliseconds)
+                };
+                Singleton.Instance.OperationTime.Add(NewDescriptionTime);
+
+                //MOSTRAR VISTA
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
                 return View();
             }
+        }
+
+        [HttpPost]
+        public ActionResult Searching(string information)
+        {
+            timer.Start();
+            if (Singleton.Instance.PlayerList.Count != 0)
+            {
+                ClassSearch.Looking(information, Singleton.Instance.PlayerList.Count, Singleton.Instance.PlayerList, x => x.Name == information);
+                ClassSearch.Looking(information, Singleton.Instance.PlayerList.Count, Singleton.Instance.PlayerList, x => x.Position == information);
+                ClassSearch.Looking(information, Singleton.Instance.PlayerList.Count, Singleton.Instance.PlayerList, x => x.LastName == information);
+                ClassSearch.Looking(information, Singleton.Instance.PlayerList.Count, Singleton.Instance.PlayerList, x => x.Club == information);
+            }
+            else
+            {
+                ClassSearch.Looking(information, Singleton.Instance.player_list.Count(), Singleton.Instance.player_list, x => x.Name == information);
+                ClassSearch.Looking(information, Singleton.Instance.player_list.Count(), Singleton.Instance.player_list, x => x.Position == information);
+                ClassSearch.Looking(information, Singleton.Instance.player_list.Count(), Singleton.Instance.player_list, x => x.LastName == information);
+                ClassSearch.Looking(information, Singleton.Instance.player_list.Count(), Singleton.Instance.player_list, x => x.Club == information);
+            }
+
+            //MEDIR TIEMPO Y GUARDARLO
+            timer.Stop();
+            var NewDescriptionTime = new Models.TimeDescription
+            {
+                DescriptionTime = "Busqueda " + information + " ",
+                NumberTime = Convert.ToString(timer.Elapsed.TotalMilliseconds)
+            };
+            Singleton.Instance.OperationTime.Add(NewDescriptionTime);
+
+            return View();
         }
 
         public ActionResult CraftList()
@@ -374,8 +491,6 @@ namespace Lab1_KASR_MAGZ.Controllers
             }
         }
 
-
-
         public ActionResult ListC()
         {
             if(Singleton.Instance.PlayerList.Count() == 0 && Singleton.Instance.player_list.Count() == 0)
@@ -390,5 +505,25 @@ namespace Lab1_KASR_MAGZ.Controllers
             }
             
         }
+
+
+
+        public ActionResult Download()
+        {
+            string text = "";
+            for (int i = 0; i < Singleton.Instance.OperationTime.Count; i++)
+            {
+                string NameDescription = Singleton.Instance.OperationTime.ElementAt(i).DescriptionTime;
+                string timeDescription = Singleton.Instance.OperationTime.ElementAt(i).NumberTime;
+                text += NameDescription + ", tiempo: " + timeDescription +" ms"+ "\n";
+            }
+
+            StreamWriter writer = new StreamWriter("Log_File.txt");
+            writer.Write(text);
+            writer.Close();
+            return RedirectToAction(nameof(Index));
+        }
+
+
     }
 }

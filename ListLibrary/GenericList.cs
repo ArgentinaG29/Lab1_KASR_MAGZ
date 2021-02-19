@@ -19,8 +19,12 @@ namespace ListLibrary
             count = 0;
         }
 
+        public virtual void InsertAtStart(T value) { }
+        
         public virtual void InsertAtEnd(T value) { }
-                            
+
+        public virtual void InsertAtPosition(T value, int position) { }
+
         public virtual void ExtractAtStart() { }
 
         public virtual void ExtractAtEnd() { }
