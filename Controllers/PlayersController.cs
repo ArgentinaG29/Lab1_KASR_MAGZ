@@ -316,7 +316,7 @@ namespace Lab1_KASR_MAGZ.Controllers
                 }
                 else
                 {
-                    Singleton.Instance.player_list.InsertAtEnd(EditPlayer);
+                    Singleton.Instance.player_list.InsertAtPosition(EditPlayer, id-1);
                 }
                 
                 return RedirectToAction(nameof(Index));
