@@ -5,7 +5,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Major League Soccer Database</h1>
 
 <b><p>Which list do you want to use?</p></b>
 <p>
@@ -19,7 +19,7 @@
 </p>
 <p>
 </p>
-<b><p>How do you want upload the data?</p></b>
+<b><p>How do you want to upload the data?</p></b>
 
 <b><p>IMPORT FILE</p></b>
 <form asp-controller="Players" asp-action="Index" method="post" enctype="multipart/form-data">
@@ -40,7 +40,7 @@
     <input type="type" name="information" value="" />
     <button>Enviar</button>
 </form>
-
+<b><p>Search a salary</p></b>
 <form action="Players/SearchingMajorSalary" method="post">
     <input type="number" name="information" value="" style='width:90px; height:30px;font-size:20px;color:blue' /> <button>Mayor</button>
 </form>
