@@ -79,6 +79,20 @@
 </table>
 <form action="Players/Searching" method="post">
 
-    <input type="type" name="information" value="" />
-    <button>Enviar</button>
+    <p>Search <input type="type" name="information" value="" /></p>
+    <div class="form-group">
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </div>
 </form>
+
+
+<form action="Players/SearchingMajorSalary" method="post">
+    <input type="number" name="information" value="" style='width:90px; height:30px;font-size:20px;color:blue' /> <button>Mayor</button>
+</form>
+<form action="Players/SearchingMinorSalary" method="post">
+    <input type="number" name="information" value="" style='width:90px; height:30px;font-size:20px;color:blue' /> <button>Menor</button>
+</form>
+<form action="Players/SearchingEqualSalary" method="post">
+    <input type="number" name="information" value="" style='width:90px; height:30px;font-size:20px;color:blue' /> <button>Igual</button>
+</form>
+
