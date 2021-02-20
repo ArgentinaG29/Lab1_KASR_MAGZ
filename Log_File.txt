@@ -1,0 +1,13 @@
+Lista Artesanal. Carga de datos por archivo , tiempo: 10.5447 ms
+Busqueda Samuel , tiempo: 3.5016 ms
+Busqueda Curtin , tiempo: 2.62 ms
+Busqueda M , tiempo: 2.8483 ms
+Busqueda CHI , tiempo: 2.7089 ms
+Busqueda Salario mayor 15000: , tiempo: 5.0148 ms
+Busqueda Salario menor 5000: , tiempo: 6.8862 ms
+Busqueda Salario menor 12900: , tiempo: 3.0931 ms
+Busqueda Salario menor 14000: , tiempo: 2.0288 ms
+Busqueda Salario igual 300000: , tiempo: 4.6192 ms
+Busqueda Salario igual 47500: , tiempo: 2.7465 ms
+Busqueda Salario igual 30000: , tiempo: 2.4841 ms
+Busqueda Salario igual 300000: , tiempo: 3.6775 ms

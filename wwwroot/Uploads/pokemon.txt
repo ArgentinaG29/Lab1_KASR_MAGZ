@@ -1,0 +1,6 @@
+Pokemon, 001, 1
+Ivy, 003, 1
+Ven, 006, 1
+Char, 005, 1
+Charm, 004, 1
+Charz, 002, 1

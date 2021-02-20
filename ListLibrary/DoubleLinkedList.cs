@@ -13,6 +13,23 @@ namespace ListLibrary
             count = 0;
         }
 
+        public override void InsertAtStart(T value)
+        {
+            Node<T> new_node = new Node<T>();
+            new_node.value = value;
+
+            if (isEmpty())
+            {
+                start = new_node;
+                end = new_node;
+            }
+            else
+            {
+                new_node.next = start;
+                start = new_node;
+            }
+            count++;
+        }
         public override void InsertAtEnd(T value)
         {
             Node<T> new_node = new Node<T>();
@@ -32,6 +49,40 @@ namespace ListLibrary
             count++;
         }
 
+        public override void InsertAtPosition(T value, int position)
+        {
+            Node<T> new_node = new Node<T>();
+            new_node.value = value;
+
+            if (position == 0)
+            {
+                InsertAtStart(value);
+            }
+            else
+            {
+                if (position >= count)
+                {
+                    InsertAtEnd(value);
+                }
+                else
+                {
+                    Node<T> pretemp = start;
+                    Node<T> temp = pretemp.next;
+                    int index = 1;
+                    while ((temp != null) && (index < position))
+                    {
+                        pretemp = temp;
+                        temp = temp.next;
+                        index++;
+                    }
+                    new_node.next = temp;
+                    new_node.prev = pretemp;
+                    pretemp.next = new_node;
+                    temp.prev = new_node;
+                    count++;
+                }
+            }
+        }
         public override void ExtractAtStart()
         {
             

@@ -7,7 +7,7 @@
 
 <h1>Index</h1>
 
-<h1>Which list do you want to use?</h1>
+<b><p>Which list do you want to use?</p></b>
 <p>
     <a asp-action="CraftList">Craft list</a>
 </p>
@@ -17,11 +17,43 @@
 <p>
 
 </p>
+<p>
+</p>
+<b><p>How do you want upload the data?</p></b>
 
+<b><p>IMPORT FILE</p></b>
+<form asp-controller="Players" asp-action="Index" method="post" enctype="multipart/form-data">
+    <input type="file" name="postedFile" value="" />
+    <input type="submit" value="Import" />
+</form>
+<p>
 
+</p>
+<b><p>MANUAL</p></b>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<b><p>What do you want to search?</p></b>
+<form action="Players/Searching" method="post">
+
+    <input type="type" name="information" value="" />
+    <button>Enviar</button>
+</form>
+
+<form action="Players/SearchingMajorSalary" method="post">
+    <input type="number" name="information" value="" style='width:90px; height:30px;font-size:20px;color:blue' /> <button>Mayor</button>
+</form>
+<form action="Players/SearchingMinorSalary" method="post">
+    <input type="number" name="information" value="" style='width:90px; height:30px;font-size:20px;color:blue' /> <button>Menor</button>
+</form>
+<form action="Players/SearchingEqualSalary" method="post">
+    <input type="number" name="information" value="" style='width:90px; height:30px;font-size:20px;color:blue' /> <button>Igual</button>
+</form>
+<p>
+    <a asp-action="Download">Download Log</a>
+</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -77,22 +109,7 @@
         }
     </tbody>
 </table>
-<form action="Players/Searching" method="post">
-
-    <p>Search <input type="type" name="information" value="" /></p>
-    <div class="form-group">
-        <input type="submit" value="Search" class="btn btn-primary" />
-    </div>
-</form>
 
 
-<form action="Players/SearchingMajorSalary" method="post">
-    <input type="number" name="information" value="" style='width:90px; height:30px;font-size:20px;color:blue' /> <button>Mayor</button>
-</form>
-<form action="Players/SearchingMinorSalary" method="post">
-    <input type="number" name="information" value="" style='width:90px; height:30px;font-size:20px;color:blue' /> <button>Menor</button>
-</form>
-<form action="Players/SearchingEqualSalary" method="post">
-    <input type="number" name="information" value="" style='width:90px; height:30px;font-size:20px;color:blue' /> <button>Igual</button>
-</form>
+
 
